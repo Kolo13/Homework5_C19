@@ -16,27 +16,21 @@ class AddPersonViewController: UIViewController {
   var personToAdd: Person!
   
   
-    override func viewDidLoad() {
-        super.viewDidLoad()
-      
-  
-        self.firstName.text = self.personToAdd?.firstName
-        self.lastName.text = personToAdd?.lastName
-        println(personToAdd?.fullName())
-
-        // Do any additional setup after loading the view.
-    }
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    self.firstName.text = self.personToAdd?.firstName
+    self.lastName.text = personToAdd?.lastName
+    
+  }
   
   override func viewWillDisappear(animated: Bool) {
     self.personToAdd?.firstName = self.firstName.text
     self.personToAdd?.lastName = self.lastName.text
     
-    println(personToAdd?.fullName())
   }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
     }
     
 

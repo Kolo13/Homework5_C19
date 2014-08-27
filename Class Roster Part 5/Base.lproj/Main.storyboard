@@ -39,7 +39,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="ybl-Oa-8k5">
-                        <barButtonItem key="rightBarButtonItem" title="+" systemItem="add" id="jRm-Cr-e41">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="jRm-Cr-e41">
                             <connections>
                                 <action selector="segueToAddVC:" destination="vXZ-lx-hvc" id="Wzv-gt-jXo"/>
                                 <segue destination="b3p-yv-f4E" kind="show" identifier="showAddPerson" id="0sZ-V5-xPS"/>

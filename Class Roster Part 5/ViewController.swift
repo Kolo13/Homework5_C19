@@ -26,11 +26,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     if let allArray = NSKeyedUnarchiver.unarchiveObjectWithFile(documentsPath + "/archive") as? [[Person]]{
       tempArray = allArray
-      println(allArray[0][0].fullName())
+      
       //NSKeyedArchiver.archiveRootObject(tempArray, toFile: documentsPath + "/archive")
 
     } else {
-      println("Nothing In File!")
+  
 //      println("HELP")
 //      var people = [Person]()
 //      var teacher = [Person]()
@@ -58,35 +58,21 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
   override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
    
     if segue.identifier == "pushDetail" {
-      println("pushDetail")
-
       let indexPath = self.tableView.indexPathForSelectedRow()
-      //if segue.identifier == "pushDetail" {
       var destination = segue.destinationViewController as DetailViewController
       destination.personProfile = tempArray[indexPath.section][indexPath.row]
       
     }else if segue.identifier == "showAddPerson" {
-      
-      println("ShowAddPerson")
-
-      
       var newDestination = segue.destinationViewController as AddPersonViewController
       tempArray[0].append(Person(firstName: "", lastName: ""))
       newDestination.personToAdd = tempArray[0][tempArray[0].count-1]
-      println(tempArray[0][tempArray[0].count-1].fullName())
-      
-    }else{}
-        
-    
+    }else{
+    }
   }
   
   override func viewWillAppear(animated: Bool) {
-    
-    
     let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
-    //let tempArray = NSKeyedUnarchiver.unarchiveObjectWithFile(documentsPath + "/archive") as [[Person]]
     NSKeyedArchiver.archiveRootObject(tempArray, toFile: documentsPath + "/archive")
-    //println(self.tempArray[0].count)
     tableView.reloadData()
   }
   
