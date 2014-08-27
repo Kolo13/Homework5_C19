@@ -8,6 +8,10 @@
 import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+  @IBAction func segueToAddVC(sender: AnyObject) {
+    
+    
+  }
   
   @IBOutlet weak var tableView: UITableView!
 
@@ -54,6 +58,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
   override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
    
     if segue.identifier == "pushDetail" {
+      println("pushDetail")
 
       let indexPath = self.tableView.indexPathForSelectedRow()
       //if segue.identifier == "pushDetail" {
@@ -62,13 +67,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
       
     }else if segue.identifier == "showAddPerson" {
       
-      var destination = segue.destinationViewController as AddPersonViewController
+      println("ShowAddPerson")
+
       
-      var newPerson = Person(firstName: " ", lastName: " ")
-      tempArray[0].append(newPerson)
-      destination.personToAdd = tempArray[0][tempArray[0].count-1]
+      var newDestination = segue.destinationViewController as AddPersonViewController
+      tempArray[0].append(Person(firstName: "", lastName: ""))
+      newDestination.personToAdd = tempArray[0][tempArray[0].count-1]
+      println(tempArray[0][tempArray[0].count-1].fullName())
       
-    }
+    }else{}
         
     
   }
@@ -79,7 +86,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
     //let tempArray = NSKeyedUnarchiver.unarchiveObjectWithFile(documentsPath + "/archive") as [[Person]]
     NSKeyedArchiver.archiveRootObject(tempArray, toFile: documentsPath + "/archive")
-    
+    //println(self.tempArray[0].count)
     tableView.reloadData()
   }
   
