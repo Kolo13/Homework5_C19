@@ -14,7 +14,7 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
   var personProfile: Person!
   var noPicImage = UIImage(named: "noPicHead")
   
-  @IBOutlet weak var firstNameTextField: UITextField!
+    @IBOutlet weak var firstNameTextField: UITextField!
   @IBOutlet weak var lastNameTextField: UITextField!
   @IBOutlet weak var profileImage: UIImageView!
   
@@ -32,7 +32,7 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
   func imagePickerController(picker: UIImagePickerController!, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]!) {
     picker.dismissViewControllerAnimated(true, completion: nil)
     var editedImage = info[UIImagePickerControllerEditedImage] as UIImage
-    self.profileImage.contentMode = UIViewContentMode.ScaleAspectFit
+    self.profileImage.contentMode = UIViewContentMode.ScaleToFill
     self.profileImage.image = editedImage
   }
   
@@ -58,7 +58,6 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
   }
-  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }

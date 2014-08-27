@@ -38,14 +38,20 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="ybl-Oa-8k5"/>
+                    <navigationItem key="navigationItem" id="ybl-Oa-8k5">
+                        <barButtonItem key="rightBarButtonItem" title="+" id="jRm-Cr-e41">
+                            <connections>
+                                <segue destination="b3p-yv-f4E" kind="show" identifier="addShowPerson" id="ce6-zt-Y9X"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="TuU-Uy-7la" id="mBE-Sx-drv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="263" y="-468"/>
+            <point key="canvasLocation" x="262.5" y="-459"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="3hw-Dr-dYh">
@@ -59,62 +65,101 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="b8f-ml-s13">
-                                <rect key="frame" x="200" y="200" width="200" height="200"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="942-5M-yRP"/>
-                                    <constraint firstAttribute="width" constant="200" id="bOs-Bf-yIR"/>
-                                </constraints>
-                            </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cdz-pX-dHv">
-                                <rect key="frame" x="200" y="421" width="26" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cdz-pX-dHv">
+                                <rect key="frame" x="16" y="314" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <variation key="heightClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="408" y="222" width="97" height="30"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="92" y="613" width="97" height="30"/>
+                                </variation>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g4y-oR-EhZ">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="b8f-ml-s13">
+                                <rect key="frame" x="16" y="84" width="200" height="200"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="Btw-1p-OMd"/>
+                                    <constraint firstAttribute="height" constant="200" id="FFZ-FD-skg"/>
+                                    <constraint firstAttribute="height" constant="200" id="YS3-7N-bhm"/>
+                                    <constraint firstAttribute="width" constant="200" id="thj-9K-lc7"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="FFZ-FD-skg"/>
+                                        <exclude reference="thj-9K-lc7"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact">
+                                    <mask key="constraints">
+                                        <exclude reference="Btw-1p-OMd"/>
+                                        <include reference="FFZ-FD-skg"/>
+                                        <exclude reference="YS3-7N-bhm"/>
+                                        <include reference="thj-9K-lc7"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BVs-kx-foV">
+                                <rect key="frame" x="16" y="371" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="heightClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="408" y="270" width="97" height="30"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="92" y="668" width="97" height="30"/>
+                                </variation>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g4y-oR-EhZ">
                                 <rect key="frame" x="200" y="169" width="80" height="30"/>
                                 <state key="normal" title="Change Pic">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="heightClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="200" y="69" width="80" height="30"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="160" y="385" width="80" height="30"/>
+                                </variation>
                                 <connections>
                                     <action selector="photoButtonPressed:" destination="dqs-hk-RIl" eventType="touchUpInside" id="4si-CN-Cf2"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BVs-kx-foV">
-                                <rect key="frame" x="241" y="421" width="97" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="97" id="j9v-Lz-xDr"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="b8f-ml-s13" secondAttribute="centerX" id="ApH-lG-dUN"/>
-                            <constraint firstAttribute="centerY" secondItem="b8f-ml-s13" secondAttribute="centerY" id="D9N-fo-O8h"/>
-                            <constraint firstAttribute="centerX" secondItem="b8f-ml-s13" secondAttribute="centerX" id="EMg-wV-3Df"/>
-                            <constraint firstItem="BVs-kx-foV" firstAttribute="leading" secondItem="Cdz-pX-dHv" secondAttribute="trailing" constant="15" id="FCg-Op-yYl">
-                                <variation key="heightClass=regular-widthClass=compact" constant="62"/>
+                            <constraint firstAttribute="centerY" secondItem="b8f-ml-s13" secondAttribute="centerY" id="CBn-vH-2ZQ"/>
+                            <constraint firstAttribute="centerX" secondItem="b8f-ml-s13" secondAttribute="centerX" id="EhU-bF-yb5"/>
+                            <constraint firstAttribute="centerX" secondItem="b8f-ml-s13" secondAttribute="centerX" constant="184" id="Iq8-Ab-mv8"/>
+                            <constraint firstAttribute="centerX" secondItem="b8f-ml-s13" secondAttribute="centerX" id="pQ2-Xc-dSN">
+                                <variation key="heightClass=compact" constant="0.0"/>
                             </constraint>
-                            <constraint firstItem="b8f-ml-s13" firstAttribute="leading" secondItem="Cdz-pX-dHv" secondAttribute="leading" id="IUU-OW-h3R"/>
-                            <constraint firstItem="BVs-kx-foV" firstAttribute="top" secondItem="b8f-ml-s13" secondAttribute="bottom" constant="21" id="f1p-MF-lEd"/>
-                            <constraint firstItem="b8f-ml-s13" firstAttribute="centerY" secondItem="k98-I6-LO1" secondAttribute="centerY" id="iH5-z9-q52"/>
-                            <constraint firstItem="BVs-kx-foV" firstAttribute="baseline" secondItem="Cdz-pX-dHv" secondAttribute="baseline" id="wSs-tC-E6a"/>
-                            <constraint firstItem="b8f-ml-s13" firstAttribute="leading" secondItem="g4y-oR-EhZ" secondAttribute="leading" id="wag-9e-lYe"/>
-                            <constraint firstItem="b8f-ml-s13" firstAttribute="top" secondItem="g4y-oR-EhZ" secondAttribute="bottom" constant="1" id="zbT-Tj-qQ5"/>
+                            <constraint firstAttribute="centerY" secondItem="b8f-ml-s13" secondAttribute="centerY" id="qIU-jN-ijb">
+                                <variation key="heightClass=compact" constant="-37"/>
+                            </constraint>
+                            <constraint firstAttribute="centerY" secondItem="b8f-ml-s13" secondAttribute="centerY" constant="116" id="sa7-G9-i3L"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="D9N-fo-O8h"/>
-                                <exclude reference="EMg-wV-3Df"/>
+                                <exclude reference="CBn-vH-2ZQ"/>
+                                <exclude reference="EhU-bF-yb5"/>
+                                <exclude reference="pQ2-Xc-dSN"/>
+                                <exclude reference="qIU-jN-ijb"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="Iq8-Ab-mv8"/>
+                                <include reference="pQ2-Xc-dSN"/>
+                                <include reference="qIU-jN-ijb"/>
+                                <exclude reference="sa7-G9-i3L"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="constraints">
-                                <include reference="D9N-fo-O8h"/>
-                                <include reference="EMg-wV-3Df"/>
+                                <exclude reference="CBn-vH-2ZQ"/>
+                                <exclude reference="EhU-bF-yb5"/>
                             </mask>
                         </variation>
                     </view>
@@ -126,7 +171,41 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oeD-VP-aoV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="951" y="-468"/>
+            <point key="canvasLocation" x="1017" y="-845.25"/>
+        </scene>
+        <!--Add Person View Controller-->
+        <scene sceneID="kFd-m6-Kpd">
+            <objects>
+                <viewController id="b3p-yv-f4E" customClass="AddPersonViewController" customModule="Class_Roster_Part_5" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RU7-QM-N8F"/>
+                        <viewControllerLayoutGuide type="bottom" id="xUL-IC-aGR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LYv-na-MEx">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jOh-TE-n6p">
+                                <rect key="frame" x="192" y="272" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9qK-30-DDF">
+                                <rect key="frame" x="312" y="272" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="firstName" destination="jOh-TE-n6p" id="GeZ-Lz-9Va"/>
+                        <outlet property="lastName" destination="9qK-30-DDF" id="1Gp-Iy-AC7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dpZ-O8-kLW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1017" y="-148.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Vpi-HB-HDn">

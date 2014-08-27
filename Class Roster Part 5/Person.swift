@@ -9,13 +9,13 @@
 import Foundation
 import UIKit
 
-class Person {
+class Person: NSObject, NSCoding {
   
   var firstName: String
   var lastName: String
   var image: UIImage?
   
-  init (firstName: String, lastName: String) {
+   init (firstName: String, lastName: String) {
     self.firstName = firstName
     self.lastName = lastName
   }
@@ -24,5 +24,16 @@ class Person {
     return self.firstName + " " + self.lastName
   }
   
-}
+  required init (coder aDecoder: NSCoder) {
+    self.firstName = aDecoder.decodeObjectForKey("firstName") as String
+    self.lastName = aDecoder.decodeObjectForKey("lastName") as String
+    self.image = aDecoder.decodeObjectForKey("image") as UIImage?
+    }
+  
+  func encodeWithCoder(aCoder: NSCoder)  {
+    aCoder.encodeObject(self.firstName, forKey: "firstName")
+    aCoder.encodeObject(self.lastName, forKey: "lastName")
+    //aCoder.encodeObject(self.image, forKey: "image")
+  }
 
+}
