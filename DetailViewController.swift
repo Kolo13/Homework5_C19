@@ -48,7 +48,7 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
     self.profileImage.clipsToBounds = true
     if personProfile.image == nil {
       self.profileImage.image = noPicImage
-    } else {
+    }else{
       self.profileImage.image = personProfile.image
     }
   }

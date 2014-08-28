@@ -192,10 +192,10 @@
                                 <exclude reference="ZMr-db-Glp"/>
                                 <exclude reference="rJj-cG-vY9"/>
                                 <exclude reference="zei-8s-nTJ"/>
+                                <exclude reference="gcd-qd-GTR"/>
                                 <exclude reference="raF-nC-Zcr"/>
                                 <exclude reference="wyO-OY-TtM"/>
                                 <exclude reference="zg2-m2-3BY"/>
-                                <exclude reference="gcd-qd-GTR"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact">
@@ -210,13 +210,13 @@
                                 <exclude reference="kPQ-JN-HBW"/>
                                 <include reference="rJj-cG-vY9"/>
                                 <include reference="zei-8s-nTJ"/>
+                                <exclude reference="5lj-ag-W3o"/>
+                                <include reference="gcd-qd-GTR"/>
                                 <exclude reference="INC-m7-Joy"/>
                                 <exclude reference="dKU-mC-Iei"/>
                                 <exclude reference="raF-nC-Zcr"/>
                                 <include reference="wyO-OY-TtM"/>
                                 <include reference="zg2-m2-3BY"/>
-                                <exclude reference="5lj-ag-W3o"/>
-                                <include reference="gcd-qd-GTR"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">

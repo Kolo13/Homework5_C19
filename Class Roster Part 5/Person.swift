@@ -14,8 +14,8 @@ class Person: NSObject, NSCoding {
   var firstName: String
   var lastName: String
   var image: UIImage?
-  
-   init (firstName: String, lastName: String) {
+
+  init (firstName: String, lastName: String) {
     self.firstName = firstName
     self.lastName = lastName
   }
@@ -30,8 +30,6 @@ class Person: NSObject, NSCoding {
     
     if let myImage = aDecoder.decodeObjectForKey("image") as? UIImage {
       self.image = myImage
-    
-      //self.image = aDecoder.decodeObjectForKey("image") as UIImage?
     }
   }
   
@@ -42,7 +40,6 @@ class Person: NSObject, NSCoding {
     if self.image != nil {
       aCoder.encodeObject(self.image!, forKey: "image")
     }
-   // aCoder.encodeObject(self.image, forKey: "image")
   }
 
 }
