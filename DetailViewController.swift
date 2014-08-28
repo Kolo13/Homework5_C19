@@ -14,7 +14,7 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
   var personProfile: Person!
   var noPicImage = UIImage(named: "noPicHead")
   
-    @IBOutlet weak var firstNameTextField: UITextField!
+  @IBOutlet weak var firstNameTextField: UITextField!
   @IBOutlet weak var lastNameTextField: UITextField!
   @IBOutlet weak var profileImage: UIImageView!
   
@@ -23,7 +23,7 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     pickerController.delegate = self
     pickerController.allowsEditing = true
-    pickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+    pickerController.sourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum
     
     self.presentViewController(pickerController, animated: true, completion: nil)
     
@@ -32,7 +32,6 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
   func imagePickerController(picker: UIImagePickerController!, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]!) {
     picker.dismissViewControllerAnimated(true, completion: nil)
     var editedImage = info[UIImagePickerControllerEditedImage] as UIImage
-    self.profileImage.contentMode = UIViewContentMode.ScaleToFill
     self.profileImage.image = editedImage
   }
   
@@ -44,20 +43,16 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
     super.viewDidLoad()
     firstNameTextField.text = personProfile.firstName
     self.lastNameTextField.text = personProfile.lastName
-    
+    self.profileImage.contentMode = UIViewContentMode.ScaleAspectFit
+    self.profileImage.layer.cornerRadius = self.profileImage.frame.size.height / 2
+    self.profileImage.clipsToBounds = true
     if personProfile.image == nil {
-      self.profileImage.contentMode = UIViewContentMode.ScaleAspectFit
-      self.profileImage.layer.cornerRadius = self.profileImage.frame.size.height / 2
-      self.profileImage.clipsToBounds = true
       self.profileImage.image = noPicImage
     } else {
-      self.profileImage.contentMode = UIViewContentMode.ScaleAspectFit
-      self.profileImage.layer.cornerRadius = self.profileImage.frame.size.height / 2
-      self.profileImage.clipsToBounds = true
       self.profileImage.image = personProfile.image
     }
-    
   }
+  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }

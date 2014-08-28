@@ -9,6 +9,7 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
   @IBAction func segueToAddVC(sender: AnyObject) {
+    let indexPath = self.tableView.indexPathForSelectedRow()
     
     
   }
@@ -17,6 +18,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
   var tempArray = [[Person]]()
   var sectionTitle = ["Students", "Teachers"]
+
 
   
   override func viewDidLoad() {
@@ -57,15 +59,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
   
   override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
    
-    if segue.identifier == "pushDetail" {
+    if segue.identifier == "showDetail" {
       let indexPath = self.tableView.indexPathForSelectedRow()
       var destination = segue.destinationViewController as DetailViewController
       destination.personProfile = tempArray[indexPath.section][indexPath.row]
       
     }else if segue.identifier == "showAddPerson" {
-      var newDestination = segue.destinationViewController as AddPersonViewController
+      var newDestination = segue.destinationViewController as DetailViewController
+      var noPicImage = UIImage(named: "noPicHead")
       tempArray[0].append(Person(firstName: "", lastName: ""))
-      newDestination.personToAdd = tempArray[0][tempArray[0].count-1]
+      tempArray[0][tempArray[0].count-1].image = noPicImage
+      newDestination.personProfile = tempArray[0][tempArray[0].count-1]
     }else{
     }
   }
@@ -73,6 +77,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
   override func viewWillAppear(animated: Bool) {
     let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
     NSKeyedArchiver.archiveRootObject(tempArray, toFile: documentsPath + "/archive")
+   
     tableView.reloadData()
   }
   
@@ -87,6 +92,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
   func tableView(tableView: UITableView!, titleForHeaderInSection section: Int) -> String! {
     return sectionTitle[section]
   }
+  
   
   func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
     var cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
