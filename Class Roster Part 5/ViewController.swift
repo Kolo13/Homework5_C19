@@ -8,32 +8,36 @@
 import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-  @IBAction func segueToAddVC(sender: AnyObject) {
-    let indexPath = self.tableView.indexPathForSelectedRow()
-    
-    
-  }
+ 
+  let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) [0] as String
+  
+
   
   @IBOutlet weak var tableView: UITableView!
 
   var allArray = [[Person]]()
   var sectionTitle = ["Students", "Teachers"]
 
+  func unArchive () {
+    if let tempArray = NSKeyedUnarchiver.unarchiveObjectWithFile(self.documentsPath + "/archive") as? [[Person]]{
+      allArray = tempArray
+    } else {
+      
+    }
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) [0] as String
-    
-    if let tempArray = NSKeyedUnarchiver.unarchiveObjectWithFile(documentsPath + "/archive") as? [[Person]]{
-      allArray = tempArray
-    } else {
-  
+     unArchive()
+
+//  
 //      println("HELP")
 //      var people = [Person]()
 //      var teacher = [Person]()
-//      var allArray = [[Person]]()
+//      //var allArray = [[Person]]()
 //      
-//      var sectionTitle = ["Students", "Teachers"]
+//      //var sectionTitle = ["Students", "Teachers"]
 //      
 //      var nathan = Person(firstName: "Nathan", lastName: "Ma")
 //      var tuan = Person(firstName: "Tuan", lastName: "Vu")
@@ -47,8 +51,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 //      allArray = [people, teacher]
 //      
 //      NSKeyedArchiver.archiveRootObject(allArray, toFile: documentsPath + "/archive")
-    }
-    
+//    
   }
   
   
@@ -60,9 +63,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
       
     }else if segue.identifier == "showAddPerson" {
       var newDestination = segue.destinationViewController as DetailViewController
-      var noPicImage = UIImage(named: "noPicHead")
       allArray[0].append(Person(firstName: "", lastName: ""))
-      allArray[0][allArray[0].count-1].image = noPicImage
       newDestination.personProfile = allArray[0][allArray[0].count-1]
     }else{
     }
@@ -71,23 +72,30 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
   
 
   override func viewWillAppear(animated: Bool) {
-    let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
-    NSKeyedArchiver.archiveRootObject(allArray, toFile: documentsPath + "/archive")
-   
+    super.viewWillAppear(animated)
+    
+
+    
+    //var tempArray = [[Person]]()
+
+    NSKeyedArchiver.archiveRootObject(self.allArray, toFile: self.documentsPath + "/archive")
+    
     tableView.reloadData()
   }
   
   func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath!) {
   }
+  
   func tableView(tableView: UITableView!, editActionsForRowAtIndexPath indexPath: NSIndexPath!) -> [AnyObject]! { let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete")
     { (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
       self.allArray[indexPath.section].removeAtIndex(indexPath.row)
       self.tableView.reloadData()
+      NSKeyedArchiver.archiveRootObject(self.allArray, toFile: self.documentsPath + "/archive")
     }
-    
     
     return [deleteAction]
   }
+  
   func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
     return self.allArray.count
   }
