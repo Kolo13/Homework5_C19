@@ -316,7 +316,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oeD-VP-aoV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1090" y="-786"/>
+            <point key="canvasLocation" x="1400" y="-786"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Vpi-HB-HDn">
@@ -338,6 +338,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="i6g-QE-9PO"/>
+        <segue reference="mXn-a1-V5G"/>
     </inferredMetricsTieBreakers>
 </document>

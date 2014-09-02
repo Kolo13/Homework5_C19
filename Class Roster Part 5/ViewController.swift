@@ -17,7 +17,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
   var allArray = [[Person]]()
   var sectionTitle = ["Students", "Teachers"]
-
+  
   func unArchive () {
     if let tempArray = NSKeyedUnarchiver.unarchiveObjectWithFile(self.documentsPath + "/archive") as? [[Person]]{
       allArray = tempArray
@@ -31,7 +31,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
      unArchive()
 
-//  
+//
 //      println("HELP")
 //      var people = [Person]()
 //      var teacher = [Person]()

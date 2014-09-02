@@ -13,9 +13,11 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
   
   var personProfile: Person!
   var noPicImage = UIImage(named: "noPicHead.jpg")
-  var myURL = NSURL(string: "https://api.github.com")
-  var userURL = NSURL(string: "https://api.github.com/user")
-  
+  var gitHubResourcePath = "https://api.github.com/users/"
+  var downloadURL = NSURL(string: "")
+  var imageDownloadQueue = NSOperationQueue()
+  var gitHubUserData = [String:String]()
+
   @IBOutlet weak var firstNameTextField: UITextField!
   @IBOutlet weak var lastNameTextField: UITextField!
   @IBOutlet weak var profileImage: UIImageView!
@@ -24,24 +26,59 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
   
 
   @IBAction func gitPicClicked(sender: UIButton) {
-    var alert = UIAlertController(title: "GitHub Account", message: "Enter Github Username", preferredStyle: UIAlertControllerStyle.Alert)
-    var tempTextField: UITextField!
+    if gitHubUsername.text != nil {
     
-    alert.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
-      textField.placeholder = "GitHub Username"
-      tempTextField = textField!
-    })
-    
-    alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
-    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default) { (alertAction:UIAlertAction!) in
-    self.gitHubUsername.text = tempTextField.text
+      var alert = UIAlertController(title: "GitHub Account", message: "Enter Github Username", preferredStyle: UIAlertControllerStyle.Alert)
+      var tempTextField: UITextField!
+      
+      
+      alert.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
+        textField.placeholder = "GitHub Username"
+        tempTextField = textField!
       })
-    
-    self.presentViewController(alert, animated: true, completion: nil)
+      
+      alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+      alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default) { (alertAction:UIAlertAction!) in
+        
+        self.gitHubUsername.text = tempTextField.text
+        
+        let getURL = NSURL(string: self.gitHubResourcePath + self.gitHubUsername.text)
+        self.downloadURL = getURL
+
+        
+        
+          let gitSession = NSURLSession.sharedSession()
+          let gitTask = gitSession.dataTaskWithURL(self.downloadURL, completionHandler: { (data, response, error) -> Void in
+            var JSONerr: NSError?
+
+            var gitUserDict = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &JSONerr) as NSDictionary
+              println(gitUserDict)
+
+            if let gitUserPicURL = gitUserDict["avatar_url"] as? String {
+            }else {
+              
+
+            }
+
+          })
+          gitTask.resume()
+          
+        
+
+        
+        
+        
+        
+        
+        
+        
+      
+      })
+      
+      self.presentViewController(alert, animated: true, completion: nil)
+    }
   }
 
-
- 
   @IBAction func photoButtonPressed(sender: AnyObject) {
     var pickerController = UIImagePickerController()
     
@@ -58,7 +95,6 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
     var editedImage = info[UIImagePickerControllerEditedImage] as UIImage
     self.profileImage.image = editedImage
     self.personProfile.image = editedImage
-    self.gitHubUserPic.image = editedImage
   }
   
   func imagePickerControllerDidCancel(picker: UIImagePickerController!) {
@@ -78,7 +114,31 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
     }else{
       self.profileImage.image = personProfile.image
     }
+  }
+
   
+  
+  
+  
+  
+  
+//MARK: viewDidAppear
+  override func viewDidAppear(animated: Bool) {
+    
+  
+  }
+  
+  
+  
+  
+  
+  
+  
+//MARK: viewWillAppear
+  override func viewWillAppear(animated: Bool) {
+    if let gitHubtemp = personProfile.gitHubUserName {
+      self.gitHubUsername.text = personProfile.gitHubUserName
+    }
   }
   
   override func didReceiveMemoryWarning() {
@@ -88,8 +148,10 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
   override func viewWillDisappear(animated: Bool) {
     personProfile.firstName = firstNameTextField.text
     personProfile.lastName = lastNameTextField.text
-    personProfile.gitHubUserName = gitHubUsername.text
-    //self.personProfile.image = self.profileImage.image
+    personProfile.gitHubUserName = self.gitHubUsername.text
+    println(self.gitHubUsername.text)
+    personProfile.gitHubProfilePic = gitHubUserPic.image
+    
   }
   
 
