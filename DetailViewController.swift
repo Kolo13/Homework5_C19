@@ -9,14 +9,14 @@
 
 import UIKit
 
-class DetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class DetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   
   var personProfile: Person!
   var noPicImage = UIImage(named: "noPicHead.jpg")
   var gitHubResourcePath = "https://api.github.com/users/"
+  var gitUserPicURL = NSURL(string: "")
   var downloadURL = NSURL(string: "")
   var imageDownloadQueue = NSOperationQueue()
-  var gitHubUserData = [String:String]()
 
   @IBOutlet weak var firstNameTextField: UITextField!
   @IBOutlet weak var lastNameTextField: UITextField!
@@ -25,54 +25,44 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
   @IBOutlet weak var gitHubUserPic: UIImageView!
   
 
+  
+  func downloadGitPic() {
+    var downloadOperation = NSBlockOperation { () -> Void in
+      var myData = NSData(contentsOfURL: self.gitUserPicURL)
+      var myImage = UIImage(data: myData)
+      NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in self.gitHubUserPic.image = myImage})
+    }
+    downloadOperation.qualityOfService = NSQualityOfService.Background
+    self.imageDownloadQueue.addOperation(downloadOperation)
+  }
+  
   @IBAction func gitPicClicked(sender: UIButton) {
-    if gitHubUsername.text != nil {
+    if self.personProfile.gitHubUserName == "" {
     
       var alert = UIAlertController(title: "GitHub Account", message: "Enter Github Username", preferredStyle: UIAlertControllerStyle.Alert)
-      var tempTextField: UITextField!
-      
-      
+      var alertTextField: UITextField!
+    
       alert.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
         textField.placeholder = "GitHub Username"
-        tempTextField = textField!
+        alertTextField = textField!
       })
       
       alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
       alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default) { (alertAction:UIAlertAction!) in
+        self.gitHubUsername.text = alertTextField.text
+        self.downloadURL = NSURL(string: self.gitHubResourcePath + self.gitHubUsername.text)
+        let gitSession = NSURLSession.sharedSession()
+        let gitTask = gitSession.dataTaskWithURL(self.downloadURL, completionHandler: {(data, response, error) -> Void in
+          var JSONerr: NSError?
+          var gitUserDict = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &JSONerr) as NSDictionary
+          if let gitUserPicURLString = gitUserDict["avatar_url"] as? String {
+            self.gitUserPicURL = NSURL(string: (gitUserPicURLString))
+            self.downloadGitPic()
+          }
+            
+        })
+        gitTask.resume()
         
-        self.gitHubUsername.text = tempTextField.text
-        
-        let getURL = NSURL(string: self.gitHubResourcePath + self.gitHubUsername.text)
-        self.downloadURL = getURL
-
-        
-        
-          let gitSession = NSURLSession.sharedSession()
-          let gitTask = gitSession.dataTaskWithURL(self.downloadURL, completionHandler: { (data, response, error) -> Void in
-            var JSONerr: NSError?
-
-            var gitUserDict = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &JSONerr) as NSDictionary
-              println(gitUserDict)
-
-            if let gitUserPicURL = gitUserDict["avatar_url"] as? String {
-            }else {
-              
-
-            }
-
-          })
-          gitTask.resume()
-          
-        
-
-        
-        
-        
-        
-        
-        
-        
-      
       })
       
       self.presentViewController(alert, animated: true, completion: nil)
@@ -106,6 +96,9 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
     self.firstNameTextField.text = personProfile.firstName
     self.lastNameTextField.text = personProfile.lastName
     self.gitHubUsername.text = personProfile.gitHubUserName
+    self.gitHubUserPic.layer.cornerRadius = self.gitHubUserPic.frame.size.height / 2
+    self.gitHubUserPic.clipsToBounds = true
+    self.gitHubUserPic.image = personProfile.gitHubProfilePic
     self.profileImage.contentMode = UIViewContentMode.ScaleAspectFit
     self.profileImage.layer.cornerRadius = self.profileImage.frame.size.height / 2
     self.profileImage.clipsToBounds = true
@@ -116,12 +109,6 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
   }
 
-  
-  
-  
-  
-  
-  
 //MARK: viewDidAppear
   override func viewDidAppear(animated: Bool) {
     
@@ -130,15 +117,9 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
   
   
   
-  
-  
-  
-  
 //MARK: viewWillAppear
   override func viewWillAppear(animated: Bool) {
-    if let gitHubtemp = personProfile.gitHubUserName {
-      self.gitHubUsername.text = personProfile.gitHubUserName
-    }
+    
   }
   
   override func didReceiveMemoryWarning() {
@@ -149,11 +130,9 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
     personProfile.firstName = firstNameTextField.text
     personProfile.lastName = lastNameTextField.text
     personProfile.gitHubUserName = self.gitHubUsername.text
-    println(self.gitHubUsername.text)
     personProfile.gitHubProfilePic = gitHubUserPic.image
     
   }
   
-
   
 }

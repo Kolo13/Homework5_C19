@@ -34,9 +34,14 @@ class Person: NSObject, NSCoding {
     if let myGitHubUserName = aDecoder.decodeObjectForKey("myGitHubUserName") as? String {
       self.gitHubUserName = myGitHubUserName
     }
+  
     if let myImage = aDecoder.decodeObjectForKey("myImage") as? UIImage {
       self.image = myImage
     }
+    if let myGitHubProfilePic = aDecoder.decodeObjectForKey("gitPic") as? UIImage {
+      self.gitHubProfilePic = myGitHubProfilePic
+    }
+    
     super.init()
   }
   
@@ -44,12 +49,16 @@ class Person: NSObject, NSCoding {
     aCoder.encodeObject(self.firstName, forKey: "firstName")
     aCoder.encodeObject(self.lastName, forKey: "lastName")
     
-   if self.gitHubUserName != nil {
+    if self.gitHubUserName != nil {
       aCoder.encodeObject(self.gitHubUserName!, forKey: "myGitHubUserName")
     }
     if self.image != nil {
       aCoder.encodeObject(self.image!, forKey: "myImage")
     }
+    if self.gitHubProfilePic != nil {
+      aCoder.encodeObject(self.gitHubProfilePic!, forKey: "gitPic")
+    }
+
   }
 
 }

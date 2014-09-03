@@ -82,19 +82,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g4y-oR-EhZ">
-                                <rect key="frame" x="320" y="301" width="80" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="FmC-hg-I9r"/>
-                                    <constraint firstAttribute="width" constant="80" id="d0b-2M-TB6"/>
-                                </constraints>
-                                <state key="normal" title="Change Pic">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="photoButtonPressed:" destination="dqs-hk-RIl" eventType="touchUpInside" id="4si-CN-Cf2"/>
-                                </connections>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="b8f-ml-s13">
                                 <rect key="frame" x="200" y="87" width="200" height="200"/>
                                 <color key="backgroundColor" red="1" green="0.10488788459999999" blue="0.1975875114" alpha="1" colorSpace="calibratedRGB"/>
@@ -137,6 +124,19 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oRB-fN-o02" userLabel="GitHubButton">
+                                <rect key="frame" x="200" y="483" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="1QL-T4-CNS"/>
+                                    <constraint firstAttribute="height" constant="50" id="Fcc-ln-tiP"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="github-10-512.jpg">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="gitPicClicked:" destination="dqs-hk-RIl" eventType="touchUpInside" id="Tjx-lW-a9a"/>
+                                </connections>
+                            </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="GitHub Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uyd-mD-c2n">
                                 <rect key="frame" x="200" y="445" width="200" height="30"/>
                                 <constraints>
@@ -172,27 +172,23 @@
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="h5j-Ke-MKE">
                                 <rect key="frame" x="200" y="483" width="50" height="50"/>
-                                <color key="backgroundColor" red="1" green="0.10488788459999999" blue="0.1975875114" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="3wE-Zg-B9A"/>
                                     <constraint firstAttribute="height" constant="50" id="SBG-sZ-42A"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oRB-fN-o02" userLabel="GitHubButton">
-                                <rect key="frame" x="200" y="489" width="50" height="50"/>
-                                <accessibility key="accessibilityConfiguration">
-                                    <accessibilityTraits key="traits" none="YES" button="YES" image="YES"/>
-                                </accessibility>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g4y-oR-EhZ">
+                                <rect key="frame" x="320" y="301" width="80" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="1QL-T4-CNS"/>
-                                    <constraint firstAttribute="height" constant="50" id="Fcc-ln-tiP"/>
+                                    <constraint firstAttribute="height" constant="30" id="FmC-hg-I9r"/>
+                                    <constraint firstAttribute="width" constant="80" id="d0b-2M-TB6"/>
                                 </constraints>
-                                <state key="normal">
+                                <state key="normal" title="Change Pic">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="gitPicClicked:" destination="dqs-hk-RIl" eventType="touchUpInside" id="Tjx-lW-a9a"/>
+                                    <action selector="photoButtonPressed:" destination="dqs-hk-RIl" eventType="touchUpInside" id="4si-CN-Cf2"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -204,7 +200,9 @@
                             <constraint firstItem="g4y-oR-EhZ" firstAttribute="top" secondItem="b8f-ml-s13" secondAttribute="bottom" constant="14" id="5lj-ag-W3o">
                                 <variation key="heightClass=compact" constant="23"/>
                             </constraint>
-                            <constraint firstAttribute="centerX" secondItem="g4y-oR-EhZ" secondAttribute="centerX" constant="-60" id="6mT-BT-SXQ"/>
+                            <constraint firstAttribute="centerX" secondItem="g4y-oR-EhZ" secondAttribute="centerX" constant="-60" id="6mT-BT-SXQ">
+                                <variation key="heightClass=compact" constant="120"/>
+                            </constraint>
                             <constraint firstAttribute="centerY" secondItem="b8f-ml-s13" secondAttribute="centerY" id="CBn-vH-2ZQ"/>
                             <constraint firstAttribute="centerX" secondItem="b8f-ml-s13" secondAttribute="centerX" id="EhU-bF-yb5"/>
                             <constraint firstItem="cjk-MG-otL" firstAttribute="top" secondItem="h5j-Ke-MKE" secondAttribute="bottom" id="GHX-Nf-CGW"/>
@@ -212,7 +210,7 @@
                                 <variation key="heightClass=compact" constant="36"/>
                             </constraint>
                             <constraint firstAttribute="centerX" secondItem="b8f-ml-s13" secondAttribute="centerX" constant="184" id="Iq8-Ab-mv8"/>
-                            <constraint firstItem="oRB-fN-o02" firstAttribute="top" secondItem="Uyd-mD-c2n" secondAttribute="bottom" constant="14" id="JhI-2z-hoO"/>
+                            <constraint firstItem="oRB-fN-o02" firstAttribute="top" secondItem="Uyd-mD-c2n" secondAttribute="bottom" constant="8" id="JhI-2z-hoO"/>
                             <constraint firstItem="Cdz-pX-dHv" firstAttribute="top" secondItem="g4y-oR-EhZ" secondAttribute="bottom" constant="6" id="Kyn-yQ-tlj">
                                 <variation key="heightClass=compact" constant="220"/>
                             </constraint>
@@ -227,7 +225,9 @@
                             </constraint>
                             <constraint firstItem="Uyd-mD-c2n" firstAttribute="top" secondItem="BVs-kx-foV" secondAttribute="bottom" constant="21" id="dtq-4c-viW"/>
                             <constraint firstAttribute="centerX" secondItem="b8f-ml-s13" secondAttribute="centerX" id="ed0-bI-qNg"/>
-                            <constraint firstItem="g4y-oR-EhZ" firstAttribute="top" secondItem="I7h-mj-m6O" secondAttribute="bottom" constant="23" id="gcd-qd-GTR"/>
+                            <constraint firstItem="g4y-oR-EhZ" firstAttribute="top" secondItem="I7h-mj-m6O" secondAttribute="bottom" constant="23" id="gcd-qd-GTR">
+                                <variation key="heightClass=compact" constant="231"/>
+                            </constraint>
                             <constraint firstItem="Uyd-mD-c2n" firstAttribute="leading" secondItem="h5j-Ke-MKE" secondAttribute="leading" id="iIa-yP-27N"/>
                             <constraint firstAttribute="centerX" secondItem="Cdz-pX-dHv" secondAttribute="centerX" id="kPQ-JN-HBW"/>
                             <constraint firstAttribute="centerX" secondItem="b8f-ml-s13" secondAttribute="centerX" id="pQ2-Xc-dSN">
@@ -248,7 +248,9 @@
                             <constraint firstItem="Uyd-mD-c2n" firstAttribute="leading" secondItem="oRB-fN-o02" secondAttribute="leading" id="uCL-V2-BHa"/>
                             <constraint firstItem="BVs-kx-foV" firstAttribute="top" secondItem="Cdz-pX-dHv" secondAttribute="bottom" constant="17" id="wyO-OY-TtM"/>
                             <constraint firstItem="BVs-kx-foV" firstAttribute="leading" secondItem="h5j-Ke-MKE" secondAttribute="trailing" id="xXv-UY-0f5"/>
-                            <constraint firstItem="Cdz-pX-dHv" firstAttribute="top" secondItem="g4y-oR-EhZ" secondAttribute="bottom" constant="8" id="zei-8s-nTJ"/>
+                            <constraint firstItem="Cdz-pX-dHv" firstAttribute="top" secondItem="g4y-oR-EhZ" secondAttribute="bottom" constant="8" id="zei-8s-nTJ">
+                                <variation key="heightClass=compact" constant="-200"/>
+                            </constraint>
                             <constraint firstItem="BVs-kx-foV" firstAttribute="leading" secondItem="b8f-ml-s13" secondAttribute="trailing" constant="8" id="zg2-m2-3BY"/>
                         </constraints>
                         <variation key="default">
@@ -337,6 +339,9 @@
             <point key="canvasLocation" x="-403" y="-468"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="github-10-512.jpg" width="50" height="50"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="mXn-a1-V5G"/>
     </inferredMetricsTieBreakers>

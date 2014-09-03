@@ -9,23 +9,18 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
  
-  let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) [0] as String
-  
-
-  
-  @IBOutlet weak var tableView: UITableView!
-
   var allArray = [[Person]]()
   var sectionTitle = ["Students", "Teachers"]
+  let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) [0] as String
   
   func unArchive () {
     if let tempArray = NSKeyedUnarchiver.unarchiveObjectWithFile(self.documentsPath + "/archive") as? [[Person]]{
       allArray = tempArray
-    } else {
-      
     }
   }
   
+  @IBOutlet weak var tableView: UITableView!
+
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -73,13 +68,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    
-
-    
-    //var tempArray = [[Person]]()
 
     NSKeyedArchiver.archiveRootObject(self.allArray, toFile: self.documentsPath + "/archive")
-    
     tableView.reloadData()
   }
   
@@ -92,7 +82,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
       self.tableView.reloadData()
       NSKeyedArchiver.archiveRootObject(self.allArray, toFile: self.documentsPath + "/archive")
     }
-    
     return [deleteAction]
   }
   

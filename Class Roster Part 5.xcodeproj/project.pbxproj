@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B5D46B719B7B1B400F8DEBC /* github-10-512.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8B5D46B619B7B1B400F8DEBC /* github-10-512.jpg */; };
 		8B7A879219ABC9FC0086E917 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7A879119ABC9FC0086E917 /* Person.swift */; };
 		8B7A879619ABCD390086E917 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7A879519ABCD390086E917 /* DetailViewController.swift */; };
 		8BA6093319AB952D004D38D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA6093219AB952D004D38D3 /* AppDelegate.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8B5D46B619B7B1B400F8DEBC /* github-10-512.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "github-10-512.jpg"; sourceTree = "<group>"; };
 		8B7A879119ABC9FC0086E917 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		8B7A879519ABCD390086E917 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailViewController.swift; path = ../DetailViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
 		8BA6092D19AB952D004D38D3 /* Class Roster Part 5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Class Roster Part 5.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,6 +85,7 @@
 			children = (
 				8BA6093219AB952D004D38D3 /* AppDelegate.swift */,
 				8BA6093419AB952D004D38D3 /* ViewController.swift */,
+				8B5D46B619B7B1B400F8DEBC /* github-10-512.jpg */,
 				8B7A879119ABC9FC0086E917 /* Person.swift */,
 				8B7A879519ABCD390086E917 /* DetailViewController.swift */,
 				8BDF6B1E19B0AEBF00853D41 /* noPicHead.jpg */,
@@ -200,6 +203,7 @@
 			files = (
 				8BA6093819AB952D004D38D3 /* Main.storyboard in Resources */,
 				8BA6093A19AB952D004D38D3 /* Images.xcassets in Resources */,
+				8B5D46B719B7B1B400F8DEBC /* github-10-512.jpg in Resources */,
 				8BDF6B1F19B0AEBF00853D41 /* noPicHead.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
