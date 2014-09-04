@@ -7,7 +7,7 @@
 //
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDelegate {
  
   var allArray = [[Person]]()
   var sectionTitle = ["Students", "Teachers"]
@@ -50,11 +50,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
   }
   
   
-  override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
     if segue.identifier == "showDetail" {
       let indexPath = self.tableView.indexPathForSelectedRow()
       var destination = segue.destinationViewController as DetailViewController
-      destination.personProfile = allArray[indexPath.section][indexPath.row]
+      destination.personProfile = allArray[indexPath!.section][indexPath!.row]
       
     }else if segue.identifier == "showAddPerson" {
       var newDestination = segue.destinationViewController as DetailViewController
@@ -85,11 +85,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     return [deleteAction]
   }
   
-  func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
+  func numberOfSectionsInTableView(tableView: UITableView) -> Int {
     return self.allArray.count
   }
-  
-  func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
+  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return allArray[section].count
   }
   
@@ -99,7 +98,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
   
   func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
     var cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
-    cell.textLabel.text = allArray[indexPath.section][indexPath.row].fullName()
+    cell.textLabel!.text = allArray[indexPath!.section][indexPath!.row].fullName()
     
     return cell
   }
