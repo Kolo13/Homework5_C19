@@ -37,7 +37,7 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
   }
   
   @IBAction func gitPicClicked(sender: UIButton) {
-    if self.personProfile.gitHubUserName == "" {
+    if (self.personProfile.gitHubUserName == "" || self.personProfile.gitHubUserName == nil) {
     
       var alert = UIAlertController(title: "GitHub Account", message: "Enter Github Username", preferredStyle: UIAlertControllerStyle.Alert)
       var alertTextField: UITextField!
