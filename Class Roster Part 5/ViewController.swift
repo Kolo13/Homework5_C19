@@ -13,40 +13,35 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
   var sectionTitle = ["Students", "Teachers"]
   let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) [0] as String
   
-  func unArchive () {
-    if let tempArray = NSKeyedUnarchiver.unarchiveObjectWithFile(self.documentsPath + "/archive") as? [[Person]]{
-      allArray = tempArray
-    }
-  }
+  
   
   @IBOutlet weak var tableView: UITableView!
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-     unArchive()
+    if let tempArray = NSKeyedUnarchiver.unarchiveObjectWithFile(self.documentsPath + "/archive") as? [[Person]]{
+      allArray = tempArray
+    }else{
+      var people = [Person]()
+      var teacher = [Person]()
+      //var allArray = [[Person]]()
+      
+      //var sectionTitle = ["Students", "Teachers"]
+      
+      var nathan = Person(firstName: "Nathan", lastName: "Ma")
+      var tuan = Person(firstName: "Tuan", lastName: "Vu")
+      var brian = Person(firstName: "Brian", lastName: "Mendez")
+      var brad = Person(firstName: "Brad", lastName: "Johnson")
+      var john = Person(firstName: "John", lastName: "Clum")
+      
+      
+      people = [nathan, tuan, brian]
+      teacher  = [brad, john]
+      allArray = [people, teacher]
+      
+      NSKeyedArchiver.archiveRootObject(allArray, toFile: documentsPath + "/archive")
 
-//
-//      println("HELP")
-//      var people = [Person]()
-//      var teacher = [Person]()
-//      //var allArray = [[Person]]()
-//      
-//      //var sectionTitle = ["Students", "Teachers"]
-//      
-//      var nathan = Person(firstName: "Nathan", lastName: "Ma")
-//      var tuan = Person(firstName: "Tuan", lastName: "Vu")
-//      var brian = Person(firstName: "Brian", lastName: "Mendez")
-//      var brad = Person(firstName: "Brad", lastName: "Johnson")
-//      var john = Person(firstName: "John", lastName: "Clum")
-//      
-//      
-//      people = [nathan, tuan, brian]
-//      teacher  = [brad, john]
-//      allArray = [people, teacher]
-//      
-//      NSKeyedArchiver.archiveRootObject(allArray, toFile: documentsPath + "/archive")
-//    
+    }
   }
   
   
